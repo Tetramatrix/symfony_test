@@ -1,0 +1,24 @@
+{
+    "devDependencies": {
+        "@symfony/webpack-encore": "^0.19.0",
+        "bootstrap-sass": "^3.3.7",
+        "jquery": "^3.3.1",
+        "node-sass": "^4.8.3",
+        "sass-loader": "^7.0.1"
+    },
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "webpack": "./node_modules/.bin/encore dev --watch",
+        "prod": "./node_modules/.bin/encore production",
+        "build": "encore production",
+        "migrate": "php bin/console doctrine:migrations:diff; php bin/console doctrine:migrations:migrate",
+        "webserver" : "php -S 127.0.0.1:8000 -t public &"
+    },
+    "dependencies": {
+        "bootstrap": "^4.1.0"
+    }
+}

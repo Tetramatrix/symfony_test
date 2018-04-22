@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+<h1><strong>Kundenkonto erstellen</strong></h1>
+<p>Ihre Rechnungsadresse</p>
+<div class="form-group form-group-lg">
+{{ form_start(form, {attr: {class: 'form-horizontal'}})}}
+{{ form_widget(form) }}
+<p class="help-block text-right">* Pflichtfelder</p>
+<p class="form-control-static">Mit der Registrierung erkläre ich mich mit den <a href="">Datenschutzbestimmungen</a> einverstanden.</p>
+<p>
+<button type="submit" id="form_Speichern" name="form[Speichern]" class="btn btn-default"><span class="arrow right"></span><span style="vertical-align: sub;">Speichern</span></button>
+</p>
+</div>
+{{ form_end(form) }}
+</div>
+
+{% endblock %}
