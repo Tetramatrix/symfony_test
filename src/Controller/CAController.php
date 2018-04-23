@@ -22,14 +22,14 @@ use Symfony\Component\Form\FormError;
 class CAController extends Controller
 {    
     /**
-    * @Route("/welcome", name="welcome")
+    * @Route("/thankyou", name="thankyou")
     */
     public function index(AccountRepository $repository): Response
     {
         $posts = $this->getDoctrine()
                     ->getRepository(Account::class)
                     ->findAll();
-        return $this->render('welcome.html.twig');
+        return $this->render('ty.html.twig');
     }
 
     /**
@@ -75,7 +75,7 @@ class CAController extends Controller
 								new \Symfony\Component\Validator\Constraints\Regex(['pattern'=>'/[a-zA-Z]+/','message' => 'Keine valider Ort!'])
 							)))
                     ->add('Land', ChoiceType::class, array ('label'=>false, 
-							 'multiple'=>false, 'choices' => array ("Deutschland *" =>'Deutschland', "Italien *" =>'Italien *', "Schweiz *" =>'Schweiz'), 
+							 'multiple'=>false, 'choices' => array ("Deutschland *" =>'Deutschland', "Italien *" =>'Italien', "Schweiz *" =>'Schweiz'), 
 							 'attr'=>array('class'=>'form-control input-sm', 'customattr'=>'customdata')))
                     ->add('Telefon', TextType::class, array('label'=>false,
 							    'attr'=>array('placeholder'=>'Telefon *', 'class'=>'form-control input-sm'),
@@ -108,13 +108,17 @@ class CAController extends Controller
 		
 		$form->get('UstId')->addError(new FormError('Ust-ID fehlt!'));
 	    
+	    } else if (!$form->get('Firma')->getData() && $form->get('UstId')->getData()) {
+		
+		$form->get('Firma')->addError(new FormError('Firma fehlt!'));
+	    
 	    } else if ($form->isSubmitted() && $form->isValid()) {
 		
 		$em = $this->getDoctrine()->getManager();		    
 		$em->persist($post);
 		$em->flush();
 		$this->addFlash('success', 'account created');
-		return $this->redirectToRoute('welcome');
+		return $this->redirectToRoute('thankyou');
 	    }
 	}
         return $this->render('new.html.twig', [
