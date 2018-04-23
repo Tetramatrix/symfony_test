@@ -104,9 +104,7 @@ class CAController extends Controller
 	if ('POST' == $request->getMethod()) {
 	    $form->handleRequest($request);
 	    
-	    if ($form->get('Firma')->getData() && !$form->get('UstId')->getData()) {
-		
-		//$data = array('success' => false, 'error' => "Ust-ID fehlt!");
+	    if ($form->get('Firma')->getData() && !$form->get('UstId')->getData()) {			
 		
 		$form->get('UstId')->addError(new FormError('Ust-ID fehlt!'));
 	    
