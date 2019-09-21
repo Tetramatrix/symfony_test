@@ -19,6 +19,6 @@
         "webserver" : "php -S 127.0.0.1:8000 -t public &"
     },
     "dependencies": {
-        "bootstrap": "^4.1.0"
+        "bootstrap": "^4.3.1"
     }
 }
